@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserRegistrationController {
+    @Autowired
+    private BreadRepository breadRepository;
 
+    @Autowired
+    private TypeRepository typeRepository;
 
     private UserService userService;
 
@@ -52,11 +56,7 @@ public class UserRegistrationController {
     }
 
 
-    @Autowired
-    private BreadRepository breadRepository;
 
-    @Autowired
-    private TypeRepository typeRepository;
 
     @GetMapping(value = "/breadlist")
     public String breadList(Model modle){
