@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Home page</title>
+    <title>Bread List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
-</head>
+    </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Bakerythree</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -47,11 +48,44 @@
         </form>
     </div>
 </nav>
-    <br>
-    <br>
-    <div class="container">
-        <h4>Welcome: <span sec:authentication="principal.username" >User</span></h4>
-    </div>
+<br>
+<br>
+<div class="container">
+    <h4>Welcome: <span sec:authentication="principal.username" >User</span></h4>
+</div>
+
+<br>
+<br>
+<table class="table table-striped" >
+    <tr>
+
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Type</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+    <tr th:each="bread : ${breads}">
+        <td th:text = "${bread.name}"></td>
+        <td th:text = "${bread.brand}"></td>
+        <td th:text = "${bread.price}"></td>
+        <td th:text = "${bread.quantity}"></td>
+        <td th:text= "${bread.type.typeName}"></td>
+        <td >
+            <a th:href="@{/delete/{id}(id=${bread.id})}" class="btn btn-danger">Delete</a>
+        </td>
+        <td>
+
+            <a th:href="@{/edit/{id}(id=${bread.id})}" class="btn btn-primary">Edit</a>
+        </td>
+    </tr>
+</table>
+
+<a href="/add" class="btn btn-primary">Add Bread</a>
+
+<br>
 
 </body>
 </html>
