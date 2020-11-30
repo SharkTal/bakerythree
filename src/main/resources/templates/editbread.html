@@ -15,6 +15,7 @@
     <form th:object="${bread}" th:action="@{../save}" action="#" method="post">
         <!--The th:action="@{../save}" not @{save} -->
         <!--Id should be added otherwise new bread is created-->
+        <input type="hidden" th:field ="*{id}" class="form-control">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" th:field = "*{name}"  aria-describedby="emailHelp" placeholder="Enter Name">
